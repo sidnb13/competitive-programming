@@ -2,7 +2,6 @@
 using namespace std;
 
 #define NAME "lostcow"
-using ll = long long int;
 
 int main() {
     cin.tie(0)->sync_with_stdio(0);
@@ -12,16 +11,17 @@ int main() {
     int x,y;
     cin >> x >> y;
 
-    int step = 1, sign = 1, dist = 0;
+    int step = 1, sign = 1, dist = 0, prev = x;
 
     while(true) {
-        if ((sign == 1 && x<=y && x+step<=y) || (sign == -1 && x-step>=y && x>=y )) {
-            dist += abs(x-y);
+        if ((sign == -1 && y <= x && x-step <= y) || (sign == 1 && x <= y && x+step >= y)) {
+            dist += abs(x-prev) + abs(x-y);
             cout << dist << endl;
             break;
         } else {
+            dist += step + abs(x-prev);
+            prev = x + step*sign;
             step *= 2;
-            dist += step;
             sign *= -1;
         }
     }
