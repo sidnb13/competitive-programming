@@ -1,8 +1,0 @@
-#!/usr/local/bin/python3
-
-import glob, os
-
-for dir in ['bronze', 'general']:
-    for f in glob.glob(f'{dir}/*'):
-        if not f.endswith('.cpp'):
-            os.remove(f)

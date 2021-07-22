@@ -3,6 +3,7 @@ using namespace std;
 
 #define NAME "blist"
 #define fore(start,end,i) for (i = start; i < end; i++)
+
 #define fori(start,end,i) for (i = start; i <= end; i++)
 
 int main() {
