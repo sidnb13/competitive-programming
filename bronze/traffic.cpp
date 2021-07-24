@@ -5,44 +5,52 @@ using namespace std;
 #define fore(start,end,i) for (i = start; i < end; i++)
 #define fori(start,end,i) for (i = start; i <= end; i++)
 
-struct sensor {int a,b; string s;};
-
-void update(int &min, int &max, string s, int a, int b, int diff) {
-    int currMax = std::max(a,b);
-    if (strcmp(s.c_str(), "on") == 0) {
-        min += diff*currMax;
-        max += diff*currMax;
-    } else if (strcmp(s.c_str(), "off") == 0) {
-        min -= diff*currMax;
-        max -= diff*currMax;
-    } else {
-        min = std::max(min, a);
-        max = std::min(max, b);
-    }
-}
-
 int main() {
     cin.tie(0)->sync_with_stdio(0);
     freopen(((string) NAME + ".in").c_str(), "r", stdin);
     freopen(((string) NAME + ".out").c_str(), "w", stdout);
 
-    int N,i; cin >> N;
+    int N;
+    cin >> N;
 
-    sensor arr[N];
-    fore(0,N,i) cin >> arr[i].s >> arr[i].a >> arr[i].b;
+    string s[N];
+    int a[N], b[N];
 
-    int min = arr[N == 1 ? 0 : 1].a, max = arr[N == 1 ? 0 : 1].b, currMax;
+    int i;
 
-    fore(1,N-1,i) {
-        update(min, max, arr[i].s, arr[i].a, arr[i].b, 1);
-        //cout << min << " " << max << endl;
+    fore(0,N,i) cin >> s[i] >> a[i] >> b[i];
+
+    int minv = -99999, maxv = 99999;
+    //backward itr
+    for (i = N-1; i >= 0; i--) {
+        if (s[i] == "on") {
+            minv -= b[i];
+            maxv -= a[i];
+            minv = max(0,minv);
+        } else if (s[i] == "off") {
+            minv += a[i];
+            maxv += b[i];
+        } else {
+            minv = max(minv,a[i]);
+            maxv = min(maxv,b[i]);
+        }
     }
+    cout << minv << " " << maxv << endl;
 
-    int minA = min, minB = arr[N == 1 ? 0 : N-2].a, maxA = max, maxB = arr[N == 1 ? 0 : N-2].b;
-
-    update(minA,maxA, arr[0].s, arr[0].a, arr[0].b, -1);
-    update(minB,maxB, arr[N-1].s, arr[N-1].a, arr[N-1].b, 1);
-
-    cout << minA << " " << maxA << endl;
-    cout << minB << " " << maxB << endl;
+    minv = -99999; maxv = 99999;
+    //forward itr
+    fore(0,N,i) {
+        if (s[i] == "on") {
+            minv += a[i];
+            maxv += b[i];
+        } else if (s[i] == "off") {
+            minv -= b[i];
+            maxv -= a[i];
+            minv = max(0,minv);
+        } else {
+            minv = max(minv,a[i]);
+            maxv = min(maxv,b[i]);
+        }
+    }
+    cout << minv << " " << maxv << endl;
 }

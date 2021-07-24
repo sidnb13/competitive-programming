@@ -10,17 +10,16 @@ int main() {
     freopen(((string) NAME + ".in").c_str(), "r", stdin);
     freopen(((string) NAME + ".out").c_str(), "w", stdout);
 
-    int N,i,j,dist,minDist = INT_MAX; 
+    int N;
     cin >> N;
 
-    int r[N], d[N]; fore(0,N,i) cin >> r[i];
+    int i,j,dist,minDist=INT_MAX,r[N];
+
+    fore(0,N,i) cin >> r[i];
 
     fore(0,N,i) {
         dist = 0;
-        fore(0,N,j) {
-            dist += j*r[(i+j)%N];
-        }
-        d[i] = dist;
+        fore(0,N,j) dist += j * r[(i+j)%N];
         minDist = min(minDist,dist);
     }
 
