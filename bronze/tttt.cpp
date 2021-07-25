@@ -45,6 +45,6 @@ int main() {
         else if (el.size() == 2)
             two++;
     }
-    
+
     std::cout << ind << endl << two << endl;
 }

@@ -1,14 +1,18 @@
 #!/usr/local/bin/python3
 
-import glob, os, sys
+import glob
+import os
+import sys
 
 LEVEL = sys.argv[1]
 ARG = sys.argv[2]
 
+
 def clean(dir):
     for f in glob.glob(f'{dir}/*'):
         if not f.endswith('.cpp'):
-            os.remove(f)    
+            os.remove(f)
+
 
 if __name__ == "__main__":
     if ARG in ['--help', '-h']:
@@ -38,5 +42,5 @@ if __name__ == "__main__":
                 contents.append(line)
             sample_case = '\n'.join(contents)
 
-            with open(f'{file_name}.in','w') as f:
+            with open(f'{file_name}.in', 'w') as f:
                 f.write(sample_case)

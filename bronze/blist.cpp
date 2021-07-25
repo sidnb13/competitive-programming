@@ -3,7 +3,6 @@ using namespace std;
 
 #define NAME "blist"
 #define fore(start,end,i) for (i = start; i < end; i++)
-
 #define fori(start,end,i) for (i = start; i <= end; i++)
 
 int main() {
@@ -18,7 +17,7 @@ int main() {
     fore(0,N,i) {cin >> start[i] >> end[i] >> buckets[i];}
 
     int totalBuckets, maxBuckets;
-    
+
     fori(*min_element(start,start+N),*max_element(end,end+N),i) {
         totalBuckets = 0;
         fore(0,N,j) {
