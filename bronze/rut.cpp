@@ -17,7 +17,7 @@ int main() {
     fori(0,N,i) {
         char dir;
         cin >> dir;
-        if (dir == 'N') 
+        if (dir == 'N')
             cows[i].t = 1;
         cin >> cows[i].x0 >> cows[i].y0;
         cows[i].x = cows[i].x0;
