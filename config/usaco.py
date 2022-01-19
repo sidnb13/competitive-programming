@@ -7,12 +7,10 @@ import sys
 LEVEL = sys.argv[1]
 ARG = sys.argv[2]
 
-
 def clean(dir):
     for f in glob.glob(f'{dir}/*'):
         if not f.endswith('.cpp'):
             os.remove(f)
-
 
 if __name__ == "__main__":
     if ARG in ['--help', '-h']:
