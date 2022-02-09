@@ -1,3 +1,3 @@
 # Competitive Programming Practice Repository
 
-TODO
+Repository of completed competitive programming problems, mainly from the CSES problemset and Codeforces.
